@@ -1,19 +1,1 @@
 # SU25_BL2_Tutor_PRO1041
-<dependencies> 
-        <dependency> 
-            <groupId>com.microsoft.sqlserver</groupId> 
-            <artifactId>mssql-jdbc</artifactId> 
-            <version>12.8.1.jre8</version> 
-        </dependency> 
-        <dependency> 
-            <groupId>org.projectlombok</groupId> 
-            <artifactId>lombok</artifactId> 
-            <version>1.18.34</version> 
-            <scope>provided</scope> 
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.external</groupId>
-            <artifactId>AbsoluteLayout</artifactId>
-            <version>RELEASE230</version>
-        </dependency>
-    </dependencies>
