@@ -187,3 +187,13 @@ INSERT INTO HoaDonChiTiet (IdHoaDon, IdChiTietSP, SoLuong, DonGia)
 VALUES 
 (1, 1, 2, 100000),
 (2, 2, 1, 220000);
+-- sửa bảng hóa đơn
+ALTER TABLE HoaDon
+ADD TongTien DECIMAL(18, 2);
+--Updat lại bảng Hóa đơn
+UPDATE HoaDon
+SET TongTien = (
+    SELECT SUM(SoLuong * DonGia)
+    FROM HoaDonChiTiet
+    WHERE HoaDonChiTiet.IdHoaDon = HoaDon.Id
+);
