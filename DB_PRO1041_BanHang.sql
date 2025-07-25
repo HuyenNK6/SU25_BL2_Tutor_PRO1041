@@ -62,6 +62,7 @@ CREATE TABLE SanPham (
     Ten NVARCHAR(50),
     IdDongSP INT,
     IdNSX INT,
+	TrangThai INT,
     FOREIGN KEY (IdDongSP) REFERENCES DongSP(Id),
     FOREIGN KEY (IdNSX) REFERENCES NSX(Id)
 );
@@ -112,6 +113,7 @@ CREATE TABLE HoaDon (
     TenNguoiNhan NVARCHAR(100),
     DiaChi NVARCHAR(255),
     Sdt NVARCHAR(15),
+	TongTien DECIMAL(18, 2),
     FOREIGN KEY (IdKH) REFERENCES KhachHang(Id),
     FOREIGN KEY (IdNV) REFERENCES NhanVien(Id)
 );
@@ -158,10 +160,10 @@ VALUES
 -- Giả sử DongSP: ID = 1 (phổ thông), 2 (cao cấp)
 -- NSX: ID = 1 (Cty A), 2 (Cty B)
 
-INSERT INTO SanPham (Ma, Ten, IdDongSP, IdNSX)
+INSERT INTO SanPham (Ma, Ten, IdDongSP, IdNSX, TrangThai)
 VALUES 
-('SP01', 'Áo thun', 1, 1),
-('SP02', 'Quần jeans', 2, 2);
+('SP01', 'Áo thun', 1, 1,1),
+('SP02', 'Quần jeans', 2, 2,0);
 -- insert bảng Màu sắc
 INSERT INTO MauSac (Ma, Ten)
 VALUES 
@@ -178,22 +180,12 @@ VALUES
 (1, 1, 1, 1, 'Sản phẩm 1 đỏ size M', 100, 50000, 100000),
 (2, 2, 2, 1, 'Sản phẩm 2 xanh size L', 50, 120000, 220000);
 -- insert bảng hóa đơn
-INSERT INTO HoaDon (IdKH, IdNV, Ma, NgayTao, NgayThanhToan, NgayShip, NgayNhan, TinhTrang, TenNguoiNhan, DiaChi, Sdt)
+INSERT INTO HoaDon (IdKH, IdNV, Ma, NgayTao, NgayThanhToan, NgayShip, NgayNhan, TinhTrang, TenNguoiNhan, DiaChi, Sdt, TongTien)
 VALUES 
-(1, 1, 'HD01', GETDATE(), GETDATE(), GETDATE(), GETDATE(), 1, 'Nguyễn Hồng Tú', '123 Lê Lợi, Huế', '0981112233'),
-(2, 2, 'HD02', GETDATE(), GETDATE(), GETDATE(), GETDATE(), 0, 'Phạm Gia Minh', '99 Trần Hưng Đạo, Đà Nẵng', '0973344556');
+(1, 1, 'HD01', GETDATE(), GETDATE(), GETDATE(), GETDATE(), 1, 'Nguyễn Hồng Tú', '123 Lê Lợi, Huế', '0981112233',200000),
+(2, 2, 'HD02', GETDATE(), GETDATE(), GETDATE(), GETDATE(), 0, 'Phạm Gia Minh', '99 Trần Hưng Đạo, Đà Nẵng', '0973344556',2200000);
 -- insert bảng hóa đơn chi tiết
 INSERT INTO HoaDonChiTiet (IdHoaDon, IdChiTietSP, SoLuong, DonGia)
 VALUES 
 (1, 1, 2, 100000),
 (2, 2, 1, 220000);
--- sửa bảng hóa đơn
-ALTER TABLE HoaDon
-ADD TongTien DECIMAL(18, 2);
---Updat lại bảng Hóa đơn
-UPDATE HoaDon
-SET TongTien = (
-    SELECT SUM(SoLuong * DonGia)
-    FROM HoaDonChiTiet
-    WHERE HoaDonChiTiet.IdHoaDon = HoaDon.Id
-);
