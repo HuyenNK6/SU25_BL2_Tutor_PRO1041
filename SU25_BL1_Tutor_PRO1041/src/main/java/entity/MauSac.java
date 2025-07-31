@@ -6,9 +6,7 @@ package entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-//import lombok.Getter;
 import lombok.NoArgsConstructor;
-//import lombok.Setter;
 
 /**
  *
@@ -16,18 +14,17 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class SanPham {
-
+@Data // @ToString, @EqualsAndHashCode, @Getter / @Setter and @RequiredArgsConstructor 
+//@Getter
+//@Setter
+public class MauSac {
     private int id;
     private String ma;
     private String ten;
-    private int idDongSP;
-    private int idNSX;
-    private int trangThai;
 
     @Override
     public String toString() {
-        return ten;
+        return  ten;
     }
+    
 }
