@@ -118,4 +118,20 @@ public class ChiTietSPRepository {
         }
         return result; //boolean -> (result > 0)
     }
+    public int suaSoLuong(ChiTietSP chiTietSP){
+        int result=0;
+        String sql;
+           sql = """
+                 UPDATE [dbo].[ChiTietSP]
+                 SET [SoLuongTon] = ?
+                 WHERE id = ?
+                   """;
+        try (PreparedStatement ps= con.prepareStatement(sql)){
+            ps.setObject(1, chiTietSP.getSoLuongTon());
+            ps.setObject(2, chiTietSP.getId());
+            result = ps.executeUpdate();
+        } catch (Exception e) {
+        }
+        return result; //boolean -> (result > 0)
+    }
 }

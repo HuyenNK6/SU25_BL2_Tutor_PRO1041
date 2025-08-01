@@ -5,7 +5,6 @@
 package entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,20 +15,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Builder
-public class ChiTietSP {
+public class HoaDon {
     private int id;
-    private int idSP;
-    private int idMauSac;
-    private int idKichThuoc;
-    private int namBH;
-    private String moTa;
-    private int soLuongTon;
-    private double giaNhap;
-    private double giaBan;
-    //bổ sung thêm
-    private String tenSanPham;
-    private String tenMauSac;
-    private String tenKichThuoc;
+    private String tenNguoiNhan;
+    private String sdt;
+    private double tongTien;
+    private String ngayTao;
+    private int tinhTrang;
     
 }

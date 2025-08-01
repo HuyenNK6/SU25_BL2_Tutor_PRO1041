@@ -17,19 +17,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
-public class ChiTietSP {
+public class HoaDonChiTiet {
+
     private int id;
-    private int idSP;
-    private int idMauSac;
-    private int idKichThuoc;
-    private int namBH;
-    private String moTa;
-    private int soLuongTon;
-    private double giaNhap;
-    private double giaBan;
-    //bổ sung thêm
-    private String tenSanPham;
-    private String tenMauSac;
-    private String tenKichThuoc;
-    
+    private int idHoaDon;
+    private int idChiTietSP;
+    private int soLuong;
+    private double donGia;
 }
